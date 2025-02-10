@@ -9,6 +9,7 @@ const Login = () => {
 
   const [emailId, setEmailId] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -20,7 +21,7 @@ const Login = () => {
       navigate("/");
 
     }catch(err){
-      console.log(err);
+      setError(err?.response?.data);
     }
   }
 
@@ -39,6 +40,7 @@ const Login = () => {
               <input type="text" value={password} className="input" onChange={(e) => setPassword(e.target.value)}/>
             </fieldset>
           </div>
+          <p className="text-red-500">{error}</p>
           <div className="card-actions justify-center">
             <button className="btn btn-primary text-lg" onClick={handleLogin}>Login</button>
           </div>
